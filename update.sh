@@ -15,13 +15,13 @@ sed_escape_rhs() {
 	echo "$@" | sed -e 's/[\/&]/\\&/g' | sed -e ':a;N;$!ba;s/\n/\\n/g'
 }
 
-alpine_versions=(3.6 3.7)
+alpine_versions=(3.4 3.5 3.6 3.7)
 
 for version in "${versions[@]}"; do
-    echo "Generating Dockerfiles for Boost version ${version}."
+    echo "Generating Dockerfiles for QuantLib version ${version}."
     template=alpine
     source $version/CONFIG
-    echo "Generating templates for ${template}"
+    echo "Generating templates for ${template} with Boost version ${boost_version}."
 
     for alpine_version in ${alpine_versions[@]}; do
 	mkdir -p $version/$template/$alpine_version

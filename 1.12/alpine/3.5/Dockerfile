@@ -1,7 +1,7 @@
-FROM westonsteimel/boost:%%TAG%%
+FROM westonsteimel/boost:1.66.0-alpine3.5
 LABEL description="QuantLib on Alpine Linux."
 
-ARG QUANTLIB_VERSION=%%QUANTLIB_VERSION%%
+ARG QUANTLIB_VERSION=1.12
 ARG QUANTLIB_DIR=QuantLib
 ENV QUANTLIB_VERSION ${QUANTLIB_VERSION}
 
