@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM quay.io/boost:alpine3.6
 LABEL description="QuantLib on Alpine Linux."
 
 ARG QUANTLIB_VERSION=1.12
@@ -15,8 +15,7 @@ RUN mkdir -p ${QUANTLIB_DIR} \
     libtool \
     curl \
     tar \
-    boost-dev \
-    && curl -sL --retry 3 http://downloads.sourceforge.net/project/quantlib/QuantLib/${QUANTLIB_VERSION}/QuantLib-${QUANTLIB_VERSION}.tar.gz | \
+    && curl -sL --retry 3 https://github.com/lballabio/QuantLib/releases/download/QuantLib-v${QUANTLIB_VERSION}/QuantLib-${QUANTLIB_VERSION}.tar.gz | \
     tar -xz --strip 1 -C ${QUANTLIB_DIR}/ \
     && cd ${QUANTLIB_DIR} \
     && sh autogen.sh \
