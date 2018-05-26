@@ -6,6 +6,8 @@ ARG CONCURRENT_PROCESSES
 ARG QUANTLIB_DIR=QuantLib
 ENV QUANTLIB_VERSION ${QUANTLIB_VERSION}
 
+RUN apk --no-cache add stdlibc++
+
 RUN mkdir -p ${QUANTLIB_DIR} \
     && apk --no-cache add --virtual .build-dependencies \
     linux-headers \
@@ -19,7 +21,7 @@ RUN mkdir -p ${QUANTLIB_DIR} \
     tar -xz --strip 1 -C ${QUANTLIB_DIR}/ \
     && cd ${QUANTLIB_DIR} \
     && sh autogen.sh \
-    && ./configure  --disable-benchmark CXXFLAGS=-O3 \
+    && ./configure --disable-static --disable-benchmark CXXFLAGS=-O3 \
     && make -j ${CONCURRENT_PROCESSES} && make install && ldconfig ./ \
     && cd .. && rm -rf ${QUANTLIB_DIR} \
     && apk del .build-dependencies \
