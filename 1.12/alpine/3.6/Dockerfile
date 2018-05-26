@@ -6,7 +6,7 @@ ARG CONCURRENT_PROCESSES
 ARG QUANTLIB_DIR=QuantLib
 ENV QUANTLIB_VERSION ${QUANTLIB_VERSION}
 
-RUN apk --no-cache add stdlibc++
+RUN apk --no-cache add libstdc++
 
 RUN mkdir -p ${QUANTLIB_DIR} \
     && apk --no-cache add --virtual .build-dependencies \
