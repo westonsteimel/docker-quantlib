@@ -6,9 +6,10 @@ ARG CONCURRENT_PROCESSES
 ARG QUANTLIB_DIR=QuantLib
 ENV QUANTLIB_VERSION ${QUANTLIB_VERSION}
 
-RUN apk --no-cache add libstdc++
-
 RUN mkdir -p ${QUANTLIB_DIR} \
+    && addgroup -g 1000 quantlib \
+    && adduser -u 1000 -G quantlib -s /bin/sh -D quantlib \
+    && apk --no-cache add libstdc++ \
     && apk --no-cache add --virtual .build-dependencies \
     linux-headers \
     build-base \
@@ -26,5 +27,7 @@ RUN mkdir -p ${QUANTLIB_DIR} \
     && cd .. && rm -rf ${QUANTLIB_DIR} \
     && apk del .build-dependencies \
     && rm -rf /var/cache/*
+
+USER quantlib
 
 CMD ["sh"]
