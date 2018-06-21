@@ -18,7 +18,7 @@ sed_escape_rhs() {
 
 alpine_versions=(3.6 3.7)
 declare -A ql_checksums
-ql_checksums=(["1.12.1"]="fcf82734fa065a81141a67f0fe185d80166e60199dd7143ac5847af4ce9a36ed" ["1.13"]="bb52df179781f9c19ef8e976780c4798b0cdc4d21fa72a7a386016e24d1a86e6")
+ql_checksums=(["1.12.1"]="92b92b3db842da20db6fc5eba1e75baecaa62f6b19f1eb1e6568ce7d7df927cc" ["1.13"]="bb52df179781f9c19ef8e976780c4798b0cdc4d21fa72a7a386016e24d1a86e6")
 
 for version in "${ql_versions[@]}"; do
     echo "Generating Dockerfiles for QuantLib version ${version}."
