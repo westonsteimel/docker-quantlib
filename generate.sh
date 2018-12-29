@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 ql_versions=( "$@" )
-if [ ${#ql_versions[@]} -eq 0 ]; then
+if [ "${#ql_versions[@]}" -eq 0 ]; then
 	ql_versions=( */ )
 fi
 
@@ -22,10 +22,10 @@ ql_checksums=(["1.12.1"]="92b92b3db842da20db6fc5eba1e75baecaa62f6b19f1eb1e6568ce
 
 for version in "${ql_versions[@]}"; do
     echo "Generating Dockerfiles for QuantLib version ${version}."
-    ql_checksum=${ql_checksums[$version]}
+    ql_checksum="${ql_checksums[$version]}"
 
-    for alpine_version in ${alpine_versions[@]}; do
-	mkdir -p ${version}/alpine/${alpine_version}
+    for alpine_version in "${alpine_versions[@]}"; do
+	mkdir -p "${version}/alpine/${alpine_version}"
         
 	sed -r \
 	    -e 's!%%TAG%%!'"alpine${alpine_version}"'!g' \

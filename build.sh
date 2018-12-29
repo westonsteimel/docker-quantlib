@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 versions=( "$@" )
-if [ ${#versions[@]} -eq 0 ]; then
+if [ "${#versions[@]}" -eq 0 ]; then
 	versions=( */ )
 fi
 versions=( "${versions[@]%/}" )
@@ -25,13 +25,14 @@ for version in "${versions[@]}"; do
     echo "Building Dockerfiles for QuantLib version ${version}."
     template=alpine
 
-    for alpine_version in ${alpine_versions[@]}; do
-	    cd "${version}/${template}/${alpine_version}"
+    for alpine_version in "${alpine_versions[@]}"; do
+        (
+        cd "${version}/${template}/${alpine_version}"
         build_tag="${imagebase}:${version}-${template}${alpine_version}"
         echo "Building ${build_tag}..."
         time docker build --build-arg "CONCURRENT_PROCESSES=4" -t "${build_tag}" .
 
-        for repo in ${repos[@]}; do 
+        for repo in "${repos[@]}"; do 
             repobase="${imagebase}"
             if [ "$repo" != "" ]; then
                 repobase="${repo}/${imagebase}"
@@ -49,6 +50,6 @@ for version in "${versions[@]}"; do
                 docker tag "${build_tag}" "${repobase}:${template}"
             fi
         done
-        cd -
+        )
     done
 done
