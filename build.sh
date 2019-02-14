@@ -15,11 +15,11 @@ sed_escape_rhs() {
 	echo "$@" | sed -e 's/[\/&]/\\&/g' | sed -e ':a;N;$!ba;s/\n/\\n/g'
 }
 
-alpine_versions=(3.7 3.8 "edge")
-latest_alpine=3.8
+alpine_versions=(3.8 3.9 "edge")
+latest_alpine=3.9
 latest_ql=1.14
 imagebase="westonsteimel/quantlib"
-repos=("quay.io")
+repos=("" "quay.io")
 
 for version in "${versions[@]}"; do
     echo "Building Dockerfiles for QuantLib version ${version}."
