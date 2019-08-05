@@ -16,9 +16,9 @@ sed_escape_rhs() {
 	echo "$@" | sed -e 's/[\/&]/\\&/g' | sed -e ':a;N;$!ba;s/\n/\\n/g'
 }
 
-alpine_versions=(3.8 3.9 "edge")
+alpine_versions=(3.10 "edge")
 declare -A ql_checksums
-ql_checksums=(["1.13"]="bb52df179781f9c19ef8e976780c4798b0cdc4d21fa72a7a386016e24d1a86e6" ["1.14"]="65a6ef7984ddedd3af64ea3f9bec44a6d658436f276b4d99ced80382eaef47fb" ["1.15"]="1f651b210d3046bffa9635864906423d40f9fff87faeaf417c9b76fd88f0ee64")
+ql_checksums=(["1.15"]="1f651b210d3046bffa9635864906423d40f9fff87faeaf417c9b76fd88f0ee64" ["1.16"]="204ad5822259f9a9146eaf660f0b756100604e3adb85c501d41d201bf09dec94")
 
 for version in "${ql_versions[@]}"; do
     echo "Generating Dockerfiles for QuantLib version ${version}."

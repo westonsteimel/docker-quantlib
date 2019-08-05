@@ -1,4 +1,4 @@
-FROM quay.io/westonsteimel/boost:alpineedge
+FROM westonsteimel/boost:alpineedge
 LABEL description="QuantLib on Alpine Linux."
 
 ARG QUANTLIB_VERSION=1.15
