@@ -8,8 +8,8 @@ ARG QUANTLIB_DIR=QuantLib
 ENV QUANTLIB_VERSION ${QUANTLIB_VERSION}
 
 RUN mkdir -p ${QUANTLIB_DIR} \
-    && addgroup -g 1000 quantlib \
-    && adduser -u 1000 -G quantlib -s /bin/sh -D quantlib \
+    && addgroup quantlib \
+    && adduser -G quantlib -s /bin/sh -D quantlib \
     && apk --no-cache add libstdc++ \
     && apk --no-cache add --virtual .build-dependencies \
     linux-headers \
@@ -33,3 +33,10 @@ RUN mkdir -p ${QUANTLIB_DIR} \
 USER quantlib
 
 CMD ["sh"]
+
+LABEL org.opencontainers.image.title="QuantLib" \
+    org.opencontainers.image.description="QuantLib on Alpine Linux in Docker" \ 
+    org.opencontainers.image.url="https://github.com/westonsteimel/docker-quantlib" \ 
+    org.opencontainers.image.source="https://github.com/westonsteimel/docker-quantlib" \
+    org.opencontainers.image.version="${QUANTLIB_VERSION}"
+
