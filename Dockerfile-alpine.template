@@ -1,4 +1,4 @@
-FROM quay.io/westonsteimel/boost:%%TAG%%
+FROM westonsteimel/boost:%%TAG%%
 LABEL description="QuantLib on Alpine Linux."
 
 ARG QUANTLIB_VERSION=%%QUANTLIB_VERSION%%

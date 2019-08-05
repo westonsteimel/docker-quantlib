@@ -19,7 +19,7 @@ alpine_versions=(3.8 3.9 "edge")
 latest_alpine=3.9
 latest_ql=1.15
 imagebase="westonsteimel/quantlib"
-repos=("" "quay.io")
+repos=("")
 
 for version in "${versions[@]}"; do
     echo "Building Dockerfiles for QuantLib version ${version}."
